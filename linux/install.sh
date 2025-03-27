@@ -53,18 +53,18 @@ receivers:
   filelog/std:
     include: [ /var/log/**log ]
     # start_at: beginning
-  hostmetrics:
-    root_path: /
-    collection_interval: 30s
-    scrapers:
-      cpu:
-      disk:
-      filesystem:
-      load:
-      memory:
-      network:
-      paging:          
-      processes:
+#  hostmetrics:
+#    root_path: /
+#    collection_interval: 30s
+#    scrapers:
+#      cpu:
+#      disk:
+#      filesystem:
+#      load:
+#      memory:
+#      network:
+#      paging:          
+#      processes:
       # process: # a bug in the process scraper causes the collector to throw errors so disabling it for now
 processors:
   resourcedetection/system:
@@ -96,10 +96,10 @@ exporters:
 service:
   extensions: [zpages]
   pipelines:
-    metrics:
-      receivers: [hostmetrics]
-      processors: [resourcedetection/system, memory_limiter, batch]
-      exporters: [otlphttp/openobserve]
+#    metrics:
+#      receivers: [hostmetrics]
+#      processors: [resourcedetection/system, memory_limiter, batch]
+#      exporters: [otlphttp/openobserve]
     logs:
       receivers: [filelog/std]
       processors: [resourcedetection/system, memory_limiter, batch]
